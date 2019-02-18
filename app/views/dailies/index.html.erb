@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1 style="font-size:40px; text-align: center;">Listing Dailies</h1>
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">MENU</a>
+  <form class="form-inline">
+    <div><a href="/"><img src="http://images.clipartpanda.com/house-clipart-House-Clip-art-21.png" width="50"height="50">
+      <a href="/dailies/new"><img src="https://cdn2.iconfinder.com/data/icons/ios-7-tab-bar-icons/500/plus-512.png" width="50" height="50"></a></div>
+  </form>
+</nav>
+<br>
+
+<% @dailies.each do |daily| %>
+  <div class="card" style="width: 18rem; float : left; background-color: #EAEAEA;">
+    <div class="card-body">
+      <h5 class="card-title">category : <%= daily.category %></h5>
+      <p class="card-text">day : <%= daily.day %></p>
+      <p class="card-text">content : <%= daily.content %></p>
+        <td><%= link_to 'Show', daily %></td>
+        <td><%= link_to 'Edit', edit_daily_path(daily) %></td>
+        <td><%= link_to 'Destroy', daily, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </div>
+    <form action = "/<%=daily.id%>/cmtda" method= "post">
+
+     댓글 : <textarea name="content"></textarea>
+     <button type="submit" class="btn btn-primary btn-md">제출</button>
+   </form>
+   
+   <!--댓글보기-->
+    <%daily.cmtdas.each do |c| %>
+        <%= c.content%>
+        <%= link_to cmtdades_path(p_id: daily.id, c_id: c.id) do %>
+          <button>삭제</button>
+    <% end %>
+       
+    <%end%>
+  </div>
+<% end %>

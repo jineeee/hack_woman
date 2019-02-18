@@ -1,0 +1,10 @@
+<body>
+    <center><h1>댓글 수정</h1></center>
+    <form action="/languages/cmtup/<%=@post.id%>" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <center>♥쓰고 싶은 말♥<br><br></center>
+              <center><input type="text" name="content" value="<%= @post.content%>"></center><br><br>
+             <center><button type="submit" class="btn btn-primary btn-md">제출</button></center>
+    </form>
+    <br><br>
+</body>

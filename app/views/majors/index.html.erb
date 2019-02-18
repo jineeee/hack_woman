@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1 style="font-size:40px; text-align: center;">Listing Majors</h1>
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">MENU</a>
+  <form class="form-inline">
+    <div><a href="/"><img src="http://images.clipartpanda.com/house-clipart-House-Clip-art-21.png" width="50"height="50">
+          <a href="/majors/new"><img src="https://cdn2.iconfinder.com/data/icons/ios-7-tab-bar-icons/500/plus-512.png" width="50" height="50"></a></div>
+
+  </form>
+</nav>
+<br>
+
+  <% @majors.each do |major| %>
+    <div class="card" style="width: 18rem; float : left; background-color: #EAEAEA;">
+      <div class="card-body">
+        <p class="card-text">day : <%= major.day %></p>
+        <p class="card-text">content : <%= major.content %></p>
+        <td><%= link_to 'Show', major %></td>
+        <td><%= link_to 'Edit', edit_major_path(major) %></td>
+        <td><%= link_to 'Destroy', major, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </div>
+      
+          <form action = "/<%=major.id%>/cmtma" method= "post">
+
+     댓글 : <textarea name="content"></textarea>
+     <button type="submit" class="btn btn-primary btn-md">제출</button>
+   </form>
+   
+   <!--댓글보기-->
+    <%major.cmtmas.each do |c| %>
+        <%= c.content%>
+        <%= link_to cmtmades_path(p_id: major.id, c_id: c.id) do %>
+          <button>삭제</button>
+    <% end %>
+       
+    <%end%>
+      
+    </div>
+  <% end %>
+

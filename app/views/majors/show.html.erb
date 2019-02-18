@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Day:</strong>
+  <%= @major.day %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @major.content %>
+</p>
+
+<%= link_to 'Edit', edit_major_path(@major) %> |
+<%= link_to 'Back', majors_path %>

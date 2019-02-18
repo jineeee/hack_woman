@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+  <body id="page-top" background-color="#EAEAEA">
+
+<h1 style="font-size:40px; text-align: center;">Listing Licenses</h1>
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand">MENU</a>
+  <form class="form-inline">
+    <div><a href="/"><img src="http://images.clipartpanda.com/house-clipart-House-Clip-art-21.png" width="50"height="50">
+        <a href="/licenses/new"><img src="https://cdn2.iconfinder.com/data/icons/ios-7-tab-bar-icons/500/plus-512.png" width="50" height="50"></a></div>
+
+  </form>
+</nav>
+<br>
+ 
+  <% @licenses.each do |license| %>
+    <div class="card" style="width: 18rem; float : left; background-color: #EAEAEA;">
+    <div class="card-body">
+      <p class="card-title" category: <%= license.category %></p>
+      <p class="card-text">day : <%= license.day %></p>
+      <p class="card-text">content : <%= license.content %></p>
+        <td><%= link_to 'Show', license %></td>
+        <td><%= link_to 'Edit', edit_license_path(license) %></td>
+        <td><%= link_to 'Destroy', license, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </div>
+      
+   <form action = "/<%=license.id%>/cmtli" method= "post">
+     댓글 : <textarea name="content"></textarea>
+     <button type="submit" class="btn btn-primary btn-md">제출</button>
+   </form>
+   
+   <!--댓글보기-->
+    <%license.cmtlis.each do |c| %>
+        <%= c.content%>
+        <%= link_to cmtlides_path(p_id: license.id, c_id: c.id) do %>
+          <button>삭제</button>
+    <% end %>
+       
+    <%end%>
+      
+    </div>
+  <% end %>
+</body>
